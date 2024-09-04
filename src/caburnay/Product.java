@@ -1,26 +1,36 @@
 package caburnay;
 
+import java.util.Scanner;
+
 public class Product {
-    int pid;
-    String pname;
-    double price;
-    int stocks, sold;
-    
-    public void addProducts(int id,String name, double pr, int stcks, int sld){
-        this.pid = id;
-        this.pname = name;
-        this.price = pr;
-        this.stocks = stcks;
-        this.sold = sld;
-    }
-    
-    public void getProducts(){
-        double profit = this.price*this.sold;
-        double tep = this.stocks*this.price;
+    public void viewproducts(){
+        Scanner sc = new Scanner(System.in);
         
-        String status = (this.stocks > 0) ? "Available" : "Out-of-Stocks";
+        System.out.println("Enter Number of Products: ");
+        int np = sc.nextInt();
         
-        System.out.printf("%-10d %-10s %-10.2f %-10d %-10d %-10.2f %-10.2f %-10s",this.pid,this.pname,this.price,this.stocks,this.sold,profit,tep,status);
+        Products[] pr = new Products[100];
+        
+        for (int i = 0; i < np; i++){
+            pr[i] = new Products();
+            
+            System.out.println("\nEnter Details for Products " + (i + i));
+            System.out.println("ID: ");
+            int id = sc.nextInt();
+            System.out.println("Name: ");
+            String name = sc.next();
+            System.out.println("Price: ");
+            double price = sc.nextDouble();
+            System.out.println("Stocks: ");
+            int stocks = sc.nextInt();
+            System.out.println("Sold: ");
+            int sold = sc.nextInt();
+            
+            pr[i].addProduct(id, name, price, stocks, sold );
+        }
+        
+        for (int i = 0; i < pr.length; i++) {
+            pr[1].viewProducts();
+        }
     }
 }
-
